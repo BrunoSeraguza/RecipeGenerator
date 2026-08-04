@@ -8,7 +8,7 @@ public class RegisterUserAccountUseCase
     {
         var validate = new RegisterUserAccountValidator();
 
-       var result =  validate.Validate(request);
+        var result =  validate.Validate(request);
 
     }
 }
