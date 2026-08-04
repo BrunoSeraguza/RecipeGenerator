@@ -1,3 +1,8 @@
+using System.Globalization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +12,22 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+
+    var suportedLanguages = new List<CultureInfo> { new("en"), new("es"),new("pt-BR")};
+
+    options.DefaultRequestCulture = new  RequestCulture("en");
+    options.SupportedCultures = suportedLanguages;
+    options.SupportedUICultures = suportedLanguages;
+
+    options.RequestCultureProviders = new List<IRequestCultureProvider> { new AcceptLanguageHeaderRequestCultureProvider() };
+
+});
 var app = builder.Build();
+
+var optionsLocatization = app.Services.GetRequiredService<IOptions< RequestLocalizationOptions>>();
+app.UseRequestLocalization(optionsLocatization.Value);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
