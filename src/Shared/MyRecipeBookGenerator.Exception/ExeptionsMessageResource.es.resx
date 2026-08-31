@@ -117,4 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="VALIDATION_EMAIL_VALID" xml:space="preserve">
+    <value>El correo electrónico debe ser una dirección válida.</value>
+  </data>
+  <data name="VALIDATION_EMAIL_REQUIRED" xml:space="preserve">
+    <value>El correo electrónico es obligatorio.</value>
+  </data>
+  <data name="VALIDATION_NAME_REQUIRED" xml:space="preserve">
+    <value>El nombre es obligatorio.</value>
+  </data>
+  <data name="VALIDATION_PASSWORD_REQUIRED" xml:space="preserve">
+    <value>La contraseña es obligatoria.</value>
+  </data>
+  <data name="UNKNOWN_ERROR" xml:space="preserve">
+    <value>Error desconocido</value>
+  </data>
 </root>
