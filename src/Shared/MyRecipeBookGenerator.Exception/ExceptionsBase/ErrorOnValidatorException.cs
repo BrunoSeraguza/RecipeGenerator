@@ -3,8 +3,10 @@
 public class ErrorOnValidatorException : MyRecipeBookException
 {
     //readonly só pode ser iniciada no construtor
-    private readonly List<string> _message;
+    private readonly List<string> _errors;
 
-    public ErrorOnValidatorException(List<string> errorsMessage) => _message = errorsMessage;
+    public ErrorOnValidatorException(List<string> errorsMessage) => _errors = errorsMessage;
+
+    public List<string> GetErrors() => _errors;
 
 }

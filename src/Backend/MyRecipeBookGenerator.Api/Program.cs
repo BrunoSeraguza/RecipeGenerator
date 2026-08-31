@@ -2,6 +2,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+using MyRecipeBookGenerator.Api.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
 
@@ -24,6 +24,8 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.RequestCultureProviders = new List<IRequestCultureProvider> { new AcceptLanguageHeaderRequestCultureProvider() };
 
 });
+builder.Services.AddMvc(options => options.Filters.Add<ExceptionFilter>());
+
 var app = builder.Build();
 
 var optionsLocatization = app.Services.GetRequiredService<IOptions< RequestLocalizationOptions>>();

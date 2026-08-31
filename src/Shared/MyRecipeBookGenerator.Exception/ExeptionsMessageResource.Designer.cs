@@ -61,6 +61,15 @@ namespace MyRecipeBookGenerator.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Unknown Error.
+        /// </summary>
+        public static string UNKNOWN_ERROR {
+            get {
+                return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Email is required.
         /// </summary>
         public static string VALIDATION_EMAIL_REQUIRED {
