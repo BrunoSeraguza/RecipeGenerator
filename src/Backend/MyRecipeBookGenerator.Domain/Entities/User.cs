@@ -2,7 +2,7 @@
 
 public class User
 {
-    public long Id { get; set; }
+    public Guid Id { get; private set; } =  Guid.NewGuid();
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public bool Active { get; set; } = true;
     public string Name { get; set; } = string.Empty;
