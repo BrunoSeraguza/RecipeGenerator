@@ -14,7 +14,7 @@ public class UsersController : ControllerBase
     {
 
         var useCase = new RegisterUserAccountUseCase();
-        useCase.Execute(request);
+        RegisterUserAccountUseCase.Execute(request);
 
         return Created();
 
