@@ -14,7 +14,7 @@ internal class RegisterUserAccountValidator : AbstractValidator<RequestRegisterU
 
         When(user => !string.IsNullOrWhiteSpace(user.Email), () =>
         {
-            RuleFor(user => user.Password).EmailAddress().WithMessage(ExeptionsMessageResource.VALIDATION_EMAIL_VALID);
+            RuleFor(user => user.Email).EmailAddress().WithMessage(ExeptionsMessageResource.VALIDATION_EMAIL_VALID);
         });
     }
 }
