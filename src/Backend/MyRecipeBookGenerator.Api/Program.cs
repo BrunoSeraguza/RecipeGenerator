@@ -12,6 +12,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+MyRecipeBookGenerator.Application.DependencyInjectionExtension.AddApplication(builder.Services);
+MyRecipeBookGenerator.Infrastructure.DependencyInjectionExtension.AddInfrastructure(builder.Services);
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
 

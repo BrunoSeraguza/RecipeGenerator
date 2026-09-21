@@ -10,14 +10,10 @@ namespace MyRecipeBookGenerator.Api.Controllers;
 public class UsersController : ControllerBase
 {
     [HttpPost]
-    public IActionResult Register([FromBody] RequestRegisterUserAccountJson request)
+    public IActionResult Register([FromBody] RequestRegisterUserAccountJson request, [FromServices] IRegisterUserAccountUseCase registerUserAccountUseCase)
     {
-
-        var useCase = new RegisterUserAccountUseCase();
-        RegisterUserAccountUseCase.Execute(request);
+        registerUserAccountUseCase.Execute(request);
 
         return Created();
-
-
     }
 }
