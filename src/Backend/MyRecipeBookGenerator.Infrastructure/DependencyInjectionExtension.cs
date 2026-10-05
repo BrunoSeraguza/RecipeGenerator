@@ -4,9 +4,9 @@ using MyRecipeBookGenerator.Infrastructure.Security.PasswordHashing;
 
 namespace MyRecipeBookGenerator.Infrastructure;
 
-public class DependencyInjectionExtension
+public static class DependencyInjectionExtension
 {
-    public static void AddInfrastructure(IServiceCollection services)
+    public static void AddInfrastructure(this IServiceCollection services)
     {
         services.AddScoped<IPasswordHasher, Argon2PasswordHasher>();
     }

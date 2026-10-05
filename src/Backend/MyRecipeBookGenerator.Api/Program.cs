@@ -1,9 +1,9 @@
 using System.Globalization;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 using MyRecipeBookGenerator.Api.Filters;
-
+using MyRecipeBookGenerator.Application;
+using MyRecipeBookGenerator.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,8 +12,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-MyRecipeBookGenerator.Application.DependencyInjectionExtension.AddApplication(builder.Services);
-MyRecipeBookGenerator.Infrastructure.DependencyInjectionExtension.AddInfrastructure(builder.Services);
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
+//MyRecipeBookGenerator.Application.DependencyInjectionExtension.AddApplication(builder.Services);
+//MyRecipeBookGenerator.Infrastructure.DependencyInjectionExtension.AddInfrastructure(builder.Services);
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
 
