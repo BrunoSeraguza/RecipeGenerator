@@ -5,7 +5,7 @@ using MyRecipeBookGenerator.Exception.ExceptionsBase;
 
 namespace MyRecipeBookGenerator.Api.Controllers;
 
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class UsersController : ControllerBase
 {
