@@ -1,5 +1,7 @@
-﻿using Mapster;
+﻿using System.Security.AccessControl;
+using Mapster;
 using MyRecipeBookGenerator.Communication.Request;
+using MyRecipeBookGenerator.Domain.Repositories.User;
 using MyRecipeBookGenerator.Domain.Security.PasswordHasher;
 using MyRecipeBookGenerator.Exception.ExceptionsBase;
 
@@ -8,18 +10,22 @@ namespace MyRecipeBookGenerator.Application.UseCases.User.Register;
 public class RegisterUserAccountUseCase : IRegisterUserAccountUseCase
 {
     private readonly IPasswordHasher _passwordHasher;
-    public RegisterUserAccountUseCase(IPasswordHasher passwordHasher)
+    private readonly IUserWriteOnlyRepository _userWriteOnlyRepository;
+    public RegisterUserAccountUseCase(IPasswordHasher passwordHasher, IUserWriteOnlyRepository userWriteOnlyRepository)
     {
         _passwordHasher = passwordHasher;
+        _userWriteOnlyRepository = userWriteOnlyRepository;
     }
 
-    public void Execute(RequestRegisterUserAccountJson request)
+    public async Task Execute(RequestRegisterUserAccountJson request)
     {
 
         ValidadeAndThrowOnFailure(request);
         var user = request.Adapt<Domain.Entities.User>();
 
         user.Password = _passwordHasher.HashPassword(request.Password);
+
+       await  _userWriteOnlyRepository.Add(user);
     }
 
     private static void ValidadeAndThrowOnFailure(RequestRegisterUserAccountJson request)
