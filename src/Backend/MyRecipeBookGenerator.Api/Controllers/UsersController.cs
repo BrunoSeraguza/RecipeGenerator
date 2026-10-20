@@ -10,9 +10,9 @@ namespace MyRecipeBookGenerator.Api.Controllers;
 public class UsersController : ControllerBase
 {
     [HttpPost]
-    public IActionResult Register([FromBody] RequestRegisterUserAccountJson request, [FromServices] IRegisterUserAccountUseCase registerUserAccountUseCase)
+    public async Task<IActionResult> Register([FromBody] RequestRegisterUserAccountJson request, [FromServices] IRegisterUserAccountUseCase registerUserAccountUseCase)
     {
-        registerUserAccountUseCase.Execute(request);
+        await registerUserAccountUseCase.Execute(request);
 
         return Created();
     }
