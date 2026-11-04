@@ -16,7 +16,7 @@ builder.Services.AddControllers().AddJsonOptions(
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplication();
-builder.Services.AddInfrastructure();
+builder.Services.AddInfrastructure(builder.Configuration);
 //MyRecipeBookGenerator.Application.DependencyInjectionExtension.AddApplication(builder.Services);
 //MyRecipeBookGenerator.Infrastructure.DependencyInjectionExtension.AddInfrastructure(builder.Services);
 builder.Services.Configure<RequestLocalizationOptions>(options =>
