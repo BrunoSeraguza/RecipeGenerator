@@ -1,6 +1,6 @@
 ﻿namespace MyRecipeBookGenerator.Domain.Entities;
 
-public class User
+public class Users
 {
     public Guid Id { get; private set; } =  Guid.NewGuid();
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

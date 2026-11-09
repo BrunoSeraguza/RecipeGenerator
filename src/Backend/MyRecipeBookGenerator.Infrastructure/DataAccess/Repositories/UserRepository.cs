@@ -12,7 +12,7 @@ internal sealed class UserRepository : IUserWriteOnlyRepository
         _context = context;         
     }
 
-    public async Task Add(User user)
+    public async Task Add(Users user)
     {
          await _context.Users.AddAsync(user);
     }
