@@ -8,6 +8,6 @@ namespace MyRecipeBookGenerator.Infrastructure.DataAccess
         public MyRecipeBookDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
 
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Users> Users { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MyRecipeBookGenerator.Domain.Repositories;
 using MyRecipeBookGenerator.Domain.Repositories.User;
 using MyRecipeBookGenerator.Domain.Security.PasswordHasher;
 using MyRecipeBookGenerator.Infrastructure.DataAccess;
@@ -15,11 +16,12 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IPasswordHasher, Argon2PasswordHasher>();
         services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         services.AddDbContext<MyRecipeBookDbContext>(options => 
         {
             var connection = configuration.GetConnectionString("DbConnection");
             options.UseSqlServer(connection);
-
         });
 
     }

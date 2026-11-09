@@ -1,6 +1,7 @@
 ﻿using System.Security.AccessControl;
 using Mapster;
 using MyRecipeBookGenerator.Communication.Request;
+using MyRecipeBookGenerator.Domain.Repositories;
 using MyRecipeBookGenerator.Domain.Repositories.User;
 using MyRecipeBookGenerator.Domain.Security.PasswordHasher;
 using MyRecipeBookGenerator.Exception.ExceptionsBase;
@@ -11,21 +12,24 @@ public class RegisterUserAccountUseCase : IRegisterUserAccountUseCase
 {
     private readonly IPasswordHasher _passwordHasher;
     private readonly IUserWriteOnlyRepository _userWriteOnlyRepository;
-    public RegisterUserAccountUseCase(IPasswordHasher passwordHasher, IUserWriteOnlyRepository userWriteOnlyRepository)
+    private readonly IUnitOfWork _unitOfWork;
+    public RegisterUserAccountUseCase(IPasswordHasher passwordHasher, IUserWriteOnlyRepository userWriteOnlyRepository, IUnitOfWork unitOfWork)
     {
         _passwordHasher = passwordHasher;
         _userWriteOnlyRepository = userWriteOnlyRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task Execute(RequestRegisterUserAccountJson request)
     {
 
         ValidadeAndThrowOnFailure(request);
-        var user = request.Adapt<Domain.Entities.User>();
+        var user = request.Adapt<Domain.Entities.Users>();
 
         user.Password = _passwordHasher.HashPassword(request.Password);
 
-       await  _userWriteOnlyRepository.Add(user);
+        await _userWriteOnlyRepository.Add(user);
+        await _unitOfWork.Commit();
     }
 
     private static void ValidadeAndThrowOnFailure(RequestRegisterUserAccountJson request)
