@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace MyRecipeBookGenerator.Communication.Response;
+﻿namespace MyRecipeBookGenerator.Communication.Response;
 
 public class ResponseErrorJson
 {
