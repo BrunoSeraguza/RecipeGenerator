@@ -1,9 +1,10 @@
-﻿using MyRecipeBookGenerator.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using MyRecipeBookGenerator.Domain.Entities;
 using MyRecipeBookGenerator.Domain.Repositories.User;
 
 namespace MyRecipeBookGenerator.Infrastructure.DataAccess.Repositories;
 
-internal sealed class UserRepository : IUserWriteOnlyRepository
+internal sealed class UserRepository : IUserWriteOnlyRepository , IUserReadOnlyRepository
 {
     private readonly MyRecipeBookDbContext _context;
 
@@ -17,4 +18,8 @@ internal sealed class UserRepository : IUserWriteOnlyRepository
          await _context.Users.AddAsync(user);
     }
 
+    public async Task<bool> VerifyExistActiveEmail(string email)
+    {
+        return  await _context.Users.AnyAsync(user => user.Active && user.Email.Equals(email));
+    }
 }

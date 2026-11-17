@@ -133,4 +133,7 @@
   <data name="UNKNOWN_ERROR" xml:space="preserve">
     <value>Unknown Error</value>
   </data>
+  <data name="VALIDATION_EMAIL_ALREADY_EXIST" xml:space="preserve">
+    <value>Email Already Exist</value>
+  </data>
 </root>
